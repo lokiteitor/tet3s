@@ -39,9 +39,8 @@ public class Mapa : MonoBehaviour {
                     //destruir columna Y en cara x y primer cubo de la cara de la derecha
                 }
 			}
-
-
 	}
+
 	// Update is called once per frame
 	void Update () {
 

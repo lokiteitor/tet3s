@@ -17,10 +17,10 @@ public class Mapa : MonoBehaviour {
 	void verificar(){
 
 		int band;//encontrar lineas a destruir
-		for(int x=0; x<4;x++)
-			for(int y=0; y<10;y++){
+		for(int x=0; x<4;x++)//cara
+			for(int y=0; y<10;y++){//columna
 				band=0;
-				for(int z=0; z<=4;z++){
+				for(int z=0; z<=4;z++){//fila
 						if(z!=4){
 							if(map[x,z,y]!=0)
 								band++;
@@ -32,7 +32,12 @@ public class Mapa : MonoBehaviour {
 							if(map[0,z,y]!=0)
 								band++;
 						}
+                    
 				}
+                if (band == 5)
+                {
+                    //destruir columna Y en cara x y primer cubo de la cara de la derecha
+                }
 			}
 
 

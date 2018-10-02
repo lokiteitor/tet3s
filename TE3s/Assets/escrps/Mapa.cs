@@ -16,7 +16,7 @@ public class Mapa : MonoBehaviour {
 
 	void verificar(){
 
-		int band;//destruir lineas
+		int band;//encontrar lineas a destruir
 		for(int x=0; x<4;x++)
 			for(int y=0; y<10;y++){
 				band=0;

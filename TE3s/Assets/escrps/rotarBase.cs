@@ -3,20 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class rotarBase : MonoBehaviour {
-    public GameObject bas;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    int x;
+    float angulo;
+    // Use this for initialization
+    void Start () {
+        x = 0;
+        angulo = 0;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("q")) {
-            float angulo= bas.transform.rotation.eulerAngles.z -90;
-                while (bas.transform.rotation.eulerAngles.z >= angulo)
-                    bas.transform.Rotate(-Vector3.forward * Time.deltaTime);
+        if (Input.GetKeyDown("e")) {
+            x = 1;
+            angulo += 90;
+            if (angulo > 360)
+                angulo = 0;
         }
-        /*if (Input.GetKeyDown("q"))
-            bas.transform.Rotate(-Vector3.up * Time.deltaTime);*/
+        if (x == 1)
+            rotar(1);
+        if (Input.GetKeyDown("q"))
+        {
+            angulo -= 90;
+            x = 2;
+            if (angulo < 0)
+                angulo = 360;
+        }
+        if (x == 2)
+            rotar(-1);
+    }
+
+    private void rotar(float a)
+    {
+        print(transform.eulerAngles.z +"-"+ transform.eulerAngles.y +"-"+ transform.eulerAngles.z);
+        transform.Rotate(Vector3.forward*Time.deltaTime * 90 * a);
+        if (transform.eulerAngles.y >= angulo)
+            x = 2;
     }
 }

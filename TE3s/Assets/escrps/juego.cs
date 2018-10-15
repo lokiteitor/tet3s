@@ -59,6 +59,7 @@ public class juego : MonoBehaviour {
             case 7:
                 actual = Instantiate(pref7, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
                 break;
+            
         }
         posicion[0] = 0.4f;
         posicion[1] = 1.2f;

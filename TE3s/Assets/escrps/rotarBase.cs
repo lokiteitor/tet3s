@@ -24,6 +24,7 @@ public class rotarBase : MonoBehaviour {
                         angulo = 0;
                     x = 1;
                     angulo += 90;
+
                 }
                 else if (Input.GetKeyDown("q"))
                     {

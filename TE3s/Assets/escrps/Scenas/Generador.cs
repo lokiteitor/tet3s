@@ -5,7 +5,7 @@ using Figura;
 
 public class Generador : MonoBehaviour {
 
-	private List<SFigura> figuras;
+	private List<SFigura> figuras = new List<SFigura>();
     private GameObject figuraActual;
     public GameObject pref1;//prefabs
     public GameObject pref2;
@@ -27,29 +27,29 @@ public class Generador : MonoBehaviour {
         switch (Random.Range(1, 8))
         {
             case 1:
-                figuraActual = Instantiate(pref1, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref1, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 2:
-                figuraActual = Instantiate(pref2, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref2, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 3:
-                figuraActual = Instantiate(pref3, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref3, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 4:
-                figuraActual = Instantiate(pref4, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref4, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 5:
-                figuraActual = Instantiate(pref5, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref5, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 6:
-                figuraActual = Instantiate(pref6, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref6, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 7:
-                figuraActual = Instantiate(pref7, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.figuraActual = Instantiate(pref7, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             
         }
-        SFigura figura = new SFigura(new Vector3(.4f, 1.2f, 0), figuraActual);
+        SFigura figura = new SFigura(new Vector3(.4f, 1.2f, 0), this.figuraActual);
         figuras.Add(figura);
        
     }

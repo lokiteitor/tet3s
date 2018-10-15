@@ -36,16 +36,18 @@ public class rotarBase : MonoBehaviour {
                 break;
             case 1://lado
                 rotar(1);
+                x = 0;
                 break;
             case 2://el otro
                 rotar(-1);
+                x = 0;
                 break;
         }
     }
 
     private void rotar(float a)//rotar
     {
-        print(transform.eulerAngles.y +"-"+angulo);
+        Debug.Log(transform.eulerAngles.y +"-"+angulo);
         transform.Rotate(Vector3.forward*Time.deltaTime * 90 * a);
 
         if ((transform.eulerAngles.y >= angulo && x == 1) || (transform.eulerAngles.y <= angulo && x == 2))

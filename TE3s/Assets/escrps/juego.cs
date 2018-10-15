@@ -63,4 +63,15 @@ public class juego : MonoBehaviour {
         posicion[0] = 0.4f;
         posicion[1] = 1.2f;
     }
+
+    private void mapear()
+    {
+        //Position = 
+        Vector3 vt = new Vector3();
+        foreach(Transform children in actual.transform)
+        {
+            vt=children.position;
+
+        }
+    }
 }

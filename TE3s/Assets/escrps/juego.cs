@@ -13,6 +13,7 @@ public class juego : MonoBehaviour {
     public GameObject pref6;
     public GameObject pref7;
     private float[] posicion;
+
     // Use this for initialization
     void Start () {
         generar();
@@ -22,24 +23,20 @@ public class juego : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown("d") && (posicion[0]+0.2f)<0.4f)
-        {
             moverL(1);
-        }
         else if (Input.GetKeyDown("a") && (posicion[0] + 0.2f) > -0.4f)
-        {
             moverL(-1);
-        }
     }
     
     private void moverL(int lado)//mover a los lados
     {
         posicion[0] += (lado * 0.2f);
-        actual.transform.position = new Vector3(posicion[0], posicion[1], 0);
+        this.actual.transform.position = new Vector3(posicion[0], posicion[1], 0);
     }
 
     private void generar()//genera aleatoriamente las figuras
     {
-        switch (Random.Range(1, 8))
+        switch (Random.Range(1, 8))//alguno
         {
             case 1:
                 actual = Instantiate(pref1, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
@@ -64,7 +61,6 @@ public class juego : MonoBehaviour {
                 break;
             
         }
-
         posicion[0] = 0.4f;
         posicion[1] = 1.2f;
     }

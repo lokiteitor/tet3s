@@ -32,13 +32,13 @@ public class rotarBase : MonoBehaviour {
                         angulo -= 90;
                         x = 2;
                     }
-                break;
+            break;
             case 1://lado
                 rotar(1);
-                break;
+            break;
             case 2://el otro
                 rotar(-1);
-                break;
+            break;
         }
     }
 
@@ -57,6 +57,7 @@ public class rotarBase : MonoBehaviour {
     private void actual()//dejamos en numero exactos el pedo
     {
         float y = transform.eulerAngles.y;
+
         if ((y < 45 && y >= 0) || (y > 315 && y <= 360))
         {
             transform.rotation = Quaternion.AngleAxis(0, Vector3.right);

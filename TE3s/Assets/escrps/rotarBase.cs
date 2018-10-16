@@ -39,9 +39,7 @@ public class rotarBase : MonoBehaviour {
                 x = 0;
                 break;
             case 2://el otro
-                rotar(1);
-           
-
+                rotar(-1);
                 x = 0;
                 break;
             
@@ -51,10 +49,11 @@ public class rotarBase : MonoBehaviour {
 
     private void rotar(float a)//rotar
     {
-        Debug.Log(transform.eulerAngles.y +"-"+angulo);
-        transform.Rotate(Vector3.forward*Time.deltaTime * 90 * a);
-
-        if ((transform.eulerAngles.y >= angulo && x == 1) || (transform.eulerAngles.y <= angulo && x == 2))
+     
+            //Debug.Log(transform.eulerAngles.y + "-" + angulo);
+            transform.Rotate(Vector3.forward * Time.deltaTime * 90 * a);
+        
+        if ((transform.eulerAngles.x >= angulo && x == 1) || (transform.eulerAngles.x <= angulo && x == 2))
         {
             x = 0;
             actual();
@@ -63,7 +62,7 @@ public class rotarBase : MonoBehaviour {
 
     private void actual()//dejamos en numero exactos el pedo
     {
-        float y = transform.eulerAngles.y;
+        float y = transform.eulerAngles.x;
 
         if ((y < 45 && y >= 0) || (y > 315 && y <= 360))
         {

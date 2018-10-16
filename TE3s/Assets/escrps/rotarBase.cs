@@ -36,19 +36,16 @@ public class rotarBase : MonoBehaviour {
             break;
             case 1://lado
                 rotar(1);
-<<<<<<< HEAD
-            break;
-            case 2://el otro
-                rotar(-1);
-            break;
-=======
                 x = 0;
                 break;
             case 2://el otro
-                rotar(-1);
+                rotar(1);
+           
+
                 x = 0;
                 break;
->>>>>>> 84286e9b32435a5dd9a310be6fd06e30f2aa96a2
+            
+
         }
     }
 

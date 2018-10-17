@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class juego : MonoBehaviour {
     private GameObject actual;//elobjeto utilizado
-    private GameObject[][][] jueg;//mapa de objetos a destruir <3 [x][y][cara]
+    private GameObject[,,] jueg;//mapa de objetos a destruir <3 [x][y][cara]
     public GameObject pref1;//prefabs
     public GameObject pref2;
     public GameObject pref3;
@@ -12,12 +12,20 @@ public class juego : MonoBehaviour {
     public GameObject pref5;
     public GameObject pref6;
     public GameObject pref7;
-    private float[] posicion;
-
-    // Use this for initialization
-    void Start () {
+    private float[] posicion;//posicion de la pieza moviendose
+    private float tiempo;//cuanto tiempo se espero por cada avanse
+    private float tiempoTr;//tiempo transcurrido desde la ultima pasada
+    private int cara;
+    //private Vector3[] actualPi;//posicion de las piezas
+    
+    void Start ()
+    {// Use this for initialization
         this.posicion = new float[2];
         generar();
+        tiempo = 1.5f;
+        tiempoTr = 0f;
+        //actualPi = new Vector3[4];
+        cara = 0;
     }
 	
 	// Update is called once per frame
@@ -29,6 +37,8 @@ public class juego : MonoBehaviour {
         else if (Input.GetKeyDown("s"))
             actual.transform.Rotate(Vector3.right * 90);
 
+        bajarPieza();
+        
 
     }
     
@@ -40,9 +50,6 @@ public class juego : MonoBehaviour {
 
     private void generar()//genera aleatoriamente las figuras
     {
-
-        
-
         switch (Random.Range(1, 8))//alguno
         {
             case 1:
@@ -73,15 +80,23 @@ public class juego : MonoBehaviour {
         this.posicion[1] = 1.2f;
     }
 
-    /*private void mapear()
+    private void bajarPieza()//esta funcion baja la pieza <3
+    {//bajar piezas cada deternimado tiempo
+        tiempoTr += Time.deltaTime;
+        if (tiempoTr >= tiempo)
+        {
+            this.posicion[1] -= 0.2f;
+            this.actual.transform.position = new Vector3(0.4f, this.posicion[1], this.posicion[0]);
+            tiempoTr = 0;
+            mapear();
+        }
+    }
+    private void mapear()
     {
-        //Position = .2x - .4
-        Vector3 vt = new Vector3();
+        int x=1;
         foreach(Transform children in actual.transform)
         {
-            children.transform.parent = transform;
-            vt = children.position;
-            jueg
+            jueg[Mathf.FloorToInt(children.position.z), Mathf.FloorToInt(children.position.y), cara]=children.gameObject;//aparecen con la posicion exacta en el juego
         }
-    }*/
+    }
 }

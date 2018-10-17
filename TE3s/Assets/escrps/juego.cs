@@ -26,6 +26,7 @@ public class juego : MonoBehaviour {
         tiempoTr = 0f;
         //actualPi = new Vector3[4];
         cara = 0;
+        jueg = new GameObject[5, 10, 4];
     }
 	
 	// Update is called once per frame
@@ -94,12 +95,20 @@ public class juego : MonoBehaviour {
 
     private void mapear()
     {
-
-
-        int x=1;
-        foreach(Transform children in actual.transform)
+        int x = 1;
+        try
         {
-            jueg[Mathf.FloorToInt(children.position.z)*5, Mathf.FloorToInt(children.position.y)*5, cara]=children.gameObject;//aparecen con la posicion exacta en el juego
+            foreach (Transform children in actual.transform)
+            {
+                jueg[Mathf.FloorToInt(children.position.z * 5), Mathf.FloorToInt(children.position.y * 5), cara] = children.gameObject;//aparecen con la posicion exacta en el juego
+                print(Mathf.FloorToInt(children.position.z * 5) + "-" + Mathf.FloorToInt(children.position.y * 5) + "-" + cara);
+            }
         }
+        catch
+        {
+            print("nup");
+        }
+
+
     }
 }

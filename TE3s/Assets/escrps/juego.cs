@@ -91,12 +91,15 @@ public class juego : MonoBehaviour {
             mapear();
         }
     }
+
     private void mapear()
     {
+
+
         int x=1;
         foreach(Transform children in actual.transform)
         {
-            jueg[Mathf.FloorToInt(children.position.z), Mathf.FloorToInt(children.position.y), cara]=children.gameObject;//aparecen con la posicion exacta en el juego
+            jueg[Mathf.FloorToInt(children.position.z)*5, Mathf.FloorToInt(children.position.y)*5, cara]=children.gameObject;//aparecen con la posicion exacta en el juego
         }
     }
 }

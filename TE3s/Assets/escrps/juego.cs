@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class juego : MonoBehaviour {
     private GameObject actual;//elobjeto utilizado
-    private GameObject[][][] jueg;//mapa de objetos a destruir <3
+    private GameObject[][][] jueg;//mapa de objetos a destruir <3 [x][y][cara]
     public GameObject pref1;//prefabs
     public GameObject pref2;
     public GameObject pref3;
@@ -16,63 +16,72 @@ public class juego : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        this.posicion = new float[2];
         generar();
-        posicion = new float[2];
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("d") && (posicion[0]+0.2f)<0.4f)
+        if (Input.GetKeyDown("d") && (this.posicion[0]+0.2f)<0.4f)
             moverL(1);
-        else if (Input.GetKeyDown("a") && (posicion[0] + 0.2f) > -0.4f)
+        else if (Input.GetKeyDown("a") && (this.posicion[0] + 0.2f) > -0.4f)
             moverL(-1);
+        else if (Input.GetKeyDown("s"))
+            actual.transform.Rotate(Vector3.right * 90);
+
+
     }
     
     private void moverL(int lado)//mover a los lados
     {
-        posicion[0] += (lado * 0.2f);
-        this.actual.transform.position = new Vector3(posicion[0], posicion[1], 0);
+        this.posicion[0] += (lado * 0.2f);
+        this.actual.transform.position = new Vector3(0.4f, this.posicion[1], this.posicion[0]);
     }
 
     private void generar()//genera aleatoriamente las figuras
     {
+
+        
+
         switch (Random.Range(1, 8))//alguno
         {
             case 1:
-                actual = Instantiate(pref1, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref1, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 2:
-                actual = Instantiate(pref2, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref2, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 3:
-                actual = Instantiate(pref3, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref3, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 4:
-                actual = Instantiate(pref4, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref4, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 5:
-                actual = Instantiate(pref5, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref5, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 6:
-                actual = Instantiate(pref6, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref6, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             case 7:
-                actual = Instantiate(pref7, new Vector3(.4f, 1.2f, 0f), Quaternion.identity);
+                this.actual = Instantiate(pref7, new Vector3(.4f, 1.2f, 0f), Quaternion.identity) as GameObject;
                 break;
             
         }
-        posicion[0] = 0.4f;
-        posicion[1] = 1.2f;
+
+        this.posicion[0] = 0.4f;
+        this.posicion[1] = 1.2f;
     }
 
-    private void mapear()
+    /*private void mapear()
     {
-        //Position = 
+        //Position = .2x - .4
         Vector3 vt = new Vector3();
         foreach(Transform children in actual.transform)
         {
-            vt=children.position;
-
+            children.transform.parent = transform;
+            vt = children.position;
+            jueg
         }
-    }
+    }*/
 }

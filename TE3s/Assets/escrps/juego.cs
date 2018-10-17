@@ -16,8 +16,8 @@ public class juego : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        this.posicion = new float[2];
         generar();
-        posicion = new float[2];
     }
 	
 	// Update is called once per frame
@@ -26,19 +26,22 @@ public class juego : MonoBehaviour {
             moverL(1);
         else if (Input.GetKeyDown("a") && (this.posicion[0] + 0.2f) > -0.4f)
             moverL(-1);
+        else if (Input.GetKeyDown("s"))
+            actual.transform.Rotate(Vector3.right * 90);
+
+
     }
     
     private void moverL(int lado)//mover a los lados
     {
         this.posicion[0] += (lado * 0.2f);
-        this.actual.transform.position = new Vector3(this.posicion[0], this.posicion[1], 0);
+        this.actual.transform.position = new Vector3(0.4f, this.posicion[1], this.posicion[0]);
     }
 
     private void generar()//genera aleatoriamente las figuras
     {
 
-        this.posicion[0] = 0.4f;
-        this.posicion[1] = 1.2f;
+        
 
         switch (Random.Range(1, 8))//alguno
         {
@@ -66,7 +69,8 @@ public class juego : MonoBehaviour {
             
         }
 
-        
+        this.posicion[0] = 0.4f;
+        this.posicion[1] = 1.2f;
     }
 
     /*private void mapear()

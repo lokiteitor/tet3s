@@ -11,7 +11,6 @@ public class rotar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("s"))
-            figura.transform.Rotate(Vector3.right * 90);
+        
 	}
 }

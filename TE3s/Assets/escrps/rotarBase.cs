@@ -52,6 +52,7 @@ public class rotarBase : MonoBehaviour {
      
             //Debug.Log(transform.eulerAngles.y + "-" + angulo);
             transform.Rotate(Vector3.forward * Time.deltaTime * 90 * a);
+        print(angulo);
         
         if ((transform.eulerAngles.x >= angulo && x == 1) || (transform.eulerAngles.x <= angulo && x == 2))
         {

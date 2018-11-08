@@ -78,9 +78,11 @@ public class rotarBase : MonoBehaviour {
     private void actCara(int a)//
     {
         escrip.cara += a;
-        
-        if (escrip.cara >= 4 || escrip.cara<=-1)
+
+        if (escrip.cara >= 4)
             escrip.cara = 0;
+        else if (escrip.cara <= -1)
+            escrip.cara = 3;
         fais = escrip.cara;
     }
 
@@ -128,8 +130,10 @@ public class rotarBase : MonoBehaviour {
     {
         int ex, y, f;//equis ye feis
         f = escrip.cara + a;
-        if (f >= 4 || f <= -1)
+        if (f > 3)
             f = 0;
+        else if (f < 0)
+            f = 3;
         for (int b = 0; b<=3; b++)
         {
             ex = escrip.getPos(b, true);

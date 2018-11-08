@@ -50,11 +50,11 @@ public class juego : MonoBehaviour {
 
     private void moverL(int lado)//mover a los lados
     {
-        bool t = true;
+        bool t = true, u=true;
         int feis = cara;
         for (int x = 0; x < 4; x++)
         {
-            equis = redondear(actualSon[x].transform.position.z) + 2;
+            /*equis = redondear(actualSon[x].transform.position.z) + 2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y) - 1;
             if ((equis + lado) > 3)
@@ -62,9 +62,11 @@ public class juego : MonoBehaviour {
                 equis = 0;
                 feis += 1;
             }
-                
+            else 
+                equis+=lado;
+            u = jueg[equis, ye, feis] == null;*/
             //print(children.position.x + "-" + children.position.y + "-" + children.position.z);
-            if ((lado == 1 && (actualSon[x].transform.position.z + 0.2f) > 0.41f) || (lado == -1 && (actualSon[x].transform.position.z - 0.2f) < -0.41f))
+            if ((lado == 1 && (actualSon[x].transform.position.z + 0.2f) > 0.41f &&  u) || (u && lado == -1 && (actualSon[x].transform.position.z - 0.2f) < -0.41f))
                 t = false;
             //print(actualSon[x].transform.position.z + "-" + t);
         }

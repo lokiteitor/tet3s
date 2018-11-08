@@ -149,13 +149,21 @@ public class juego : MonoBehaviour {
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
             print (equis+"-"+ye);
+
+            // meter la pieza al mapa
+            if (equis < 0)
+                moverL(1);
+            if (equis > 4)
+                moverL(-1);
+
             if (ye <= 0)
                 return false;
             else if (equis < 4)
             {
                 if (jueg[equis,ye-1, cara] != null)
                     return false;
-            }else{
+            }else
+            {
                 //print("entra pta");
                 int f=cara;
                 if (cara == 3)
@@ -194,7 +202,6 @@ public class juego : MonoBehaviour {
     private int redondear(float pos)//numerito de cordenada
     {
         pos *= 5;
-        print(pos+"?"+Mathf.Ceil(pos) + "?" + Mathf.Floor(pos)+"?"+ (pos - Mathf.Floor(pos))+"?"+ ((pos - Mathf.Floor(pos)) > .5f)+"?"+ Mathf.CeilToInt(pos) + "?" + Mathf.FloorToInt(pos));
         if (Mathf.Ceil(pos) == Mathf.Floor(pos))
             return Mathf.FloorToInt(pos);
         else if ((pos - Mathf.Floor(pos)) > .5f)

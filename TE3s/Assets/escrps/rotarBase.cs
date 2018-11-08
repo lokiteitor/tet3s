@@ -22,7 +22,7 @@ public class rotarBase : MonoBehaviour {
         comparador=0;
         fais = 0;
     }
-	
+
 
 	// Update is called once per frame
 	void Update () {
@@ -69,7 +69,7 @@ public class rotarBase : MonoBehaviour {
         if ((transform.eulerAngles.y >= angulo && x == 1) || (transform.eulerAngles.y <= angulo && x == 2))
         {
             this.x = 0;
-            
+
             actual(transform.eulerAngles.y);
             actCara(a);
         }
@@ -78,7 +78,7 @@ public class rotarBase : MonoBehaviour {
     private void actCara(int a)//
     {
         escrip.cara += a;
-        
+
         if (escrip.cara >= 4 || escrip.cara<=-1)
             escrip.cara = 0;
         fais = escrip.cara;
@@ -120,7 +120,7 @@ public class rotarBase : MonoBehaviour {
         {
             print("damn");
         }
-        
+
         juego.SetActive(true);
     }
 

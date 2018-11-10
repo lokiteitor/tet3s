@@ -50,25 +50,39 @@ public class juego : MonoBehaviour {
 
     private void moverL(int lado)//mover a los lados
     {
-        bool t = true, u=true;
+        bool t = true;
         int feis = cara;
-        for (int x = 0; x < 4; x++)
+        for (int x = 0; x < 4 && t; x++)
         {
-            /*equis = redondear(actualSon[x].transform.position.z) + 2;
+            equis = redondear(actualSon[x].transform.position.z) + 2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y) - 1;
-            if ((equis + lado) > 3)
-            {
-                equis = 0;
-                feis += 1;
-            }
-            else 
-                equis+=lado;
-            u = jueg[equis, ye, feis] == null;*/
-            //print(children.position.x + "-" + children.position.y + "-" + children.position.z);
-            if ((lado == 1 && (actualSon[x].transform.position.z + 0.2f) > 0.41f &&  u) || (u && lado == -1 && (actualSon[x].transform.position.z - 0.2f) < -0.41f))
+            print(x+" "+(equis + lado));
+            if ((equis + lado) > 4 && (equis + lado) < 0)
                 t = false;
-            //print(actualSon[x].transform.position.z + "-" + t);
+            else
+                try
+                {
+
+                    if ((equis + lado) <= 3)
+                    {
+                        if (jueg[(equis + lado), ye, cara] != null)
+                            t = false;
+                    }
+                    else if (cara <= 2)
+                    {
+                        if (jueg[0, ye, cara + 1] != null)
+                            t = false;
+                    }
+                    else if (cara > 2)
+                        if (jueg[0, ye, 0] != null)
+                            t = false;
+                }
+                catch
+                {
+                    print("lo intente");
+                }
+            
         }
         if (t)
         {
@@ -150,7 +164,7 @@ public class juego : MonoBehaviour {
             equis = redondear(actualSon[x].transform.position.z)+2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
-            print (equis+"-"+ye);
+            //print (equis+"-"+ye);
 
             // meter la pieza al mapa
             if (equis < 0)
@@ -188,7 +202,7 @@ public class juego : MonoBehaviour {
             equis = redondear(actualSon[x].transform.position.z)+2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
-            print(equis+"-"+ye);
+            //print(equis+"-"+ye);
             jueg[equis, ye, cara] = actualSon[x];
         }
     }

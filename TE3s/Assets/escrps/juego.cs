@@ -18,12 +18,15 @@ public class juego : MonoBehaviour {
     private float tiempoTr;//tiempo transcurrido desde la ultima pasada
     public int cara;
     public GameObject baseJ;
-    int equis;//x
-    int ye;//y
+    public GameObject dest;
+    private destruccion destruct;
+    public int equis;//x
+    public int ye;//y
     //private Vector3[] actualPi;//posicion de las piezas
 
     void Start ()
     {// Use this for initialization
+        destruct = dest.GetComponent <destruccion>();
         this.posicion = new float[2];
         tiempo = 1.5f;
         tiempoTr = 0f;
@@ -51,7 +54,6 @@ public class juego : MonoBehaviour {
     private void moverL(int lado)//mover a los lados
     {
         bool t = true;
-        int feis = cara;
         for (int x = 0; x < 4 && t; x++)
         {
             equis = redondear(actualSon[x].transform.position.z) + 2;

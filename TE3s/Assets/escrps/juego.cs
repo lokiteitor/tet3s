@@ -18,7 +18,6 @@ public class juego : MonoBehaviour {
     private float tiempoTr;//tiempo transcurrido desde la ultima pasada
     public int cara;
     public GameObject baseJ;
-    public GameObject dest;
     private destruccion destruct;
     public int equis;//x
     public int ye;//y
@@ -26,7 +25,6 @@ public class juego : MonoBehaviour {
 
     void Start ()
     {// Use this for initialization
-        destruct = dest.GetComponent <destruccion>();
         this.posicion = new float[2];
         tiempo = 1.5f;
         tiempoTr = 0f;
@@ -35,6 +33,7 @@ public class juego : MonoBehaviour {
         jueg = new GameObject[5, 11, 4];
         actualSon = new GameObject[4];
         generar();
+        destruct = baseJ.GetComponent<destruccion>();
     }
 
 	// Update is called once per frame
@@ -150,6 +149,7 @@ public class juego : MonoBehaviour {
                 {
                     actualSon[p].transform.SetParent(baseJ.transform);
                 }
+                destruct.verificar();
                 generar();
             }
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class rotarBase : MonoBehaviour {
     int x;
     float angulo;//se usa para girar
-    float comparador;//se usa para detener el giro
+    //float comparador;//se usa para detener el giro
     float falta;//cuanto falta para 90 grgados
     int fais;
     public GameObject juego;
@@ -19,7 +19,7 @@ public class rotarBase : MonoBehaviour {
     void Start () {
         x = 0;
         angulo = 0;
-        comparador=0;
+        //comparador=0;
         fais = 0;
     }
 	

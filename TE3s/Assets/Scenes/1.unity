@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 1466913034}
   - component: {fileID: 1466913033}
   - component: {fileID: 1466913036}
+  - component: {fileID: 1466913037}
   m_Layer: 0
   m_Name: base
   m_TagString: Untagged
@@ -432,6 +433,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   juego: {fileID: 2110791194}
+--- !u!114 &1466913037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466913032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf77392eebb3ba9479efce28324fbd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elJuego: {fileID: 2110791194}
 --- !u!1 &2110791194
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +479,10 @@ MonoBehaviour:
   pref5: {fileID: 1977642833911044, guid: 339756ab87c2d044c8428b0a7c524847, type: 2}
   pref6: {fileID: 1132885908034732, guid: f077b3e01ae1a174a98f0c7fc2125f97, type: 2}
   pref7: {fileID: 1168491259784516, guid: 26131c48f53a98146a4c78d6a4c665b7, type: 2}
+  cara: 0
   baseJ: {fileID: 1466913032}
+  equis: 0
+  ye: 0
 --- !u!4 &2110791196
 Transform:
   m_ObjectHideFlags: 0

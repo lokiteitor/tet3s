@@ -58,13 +58,13 @@ public class juego : MonoBehaviour {
             equis = redondear(actualSon[x].transform.position.z) + 2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y) - 1;
-            print(x+" "+(equis + lado));
+            //print(x+" "+(equis + lado));
             if ((equis + lado) > 4 && (equis + lado) < 0)
                 t = false;
             else
                 try
                 {
-
+                    
                     if ((equis + lado) <= 3)
                     {
                         if (jueg[(equis + lado), ye, cara] != null)
@@ -78,6 +78,7 @@ public class juego : MonoBehaviour {
                     else if (cara > 2)
                         if (jueg[0, ye, 0] != null)
                             t = false;
+                    
                 }
                 catch
                 {
@@ -204,8 +205,15 @@ public class juego : MonoBehaviour {
             equis = redondear(actualSon[x].transform.position.z)+2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
-            //print(equis+"-"+ye);
-            jueg[equis, ye, cara] = actualSon[x];
+            print(equis+"-"+ye+"-"+cara);
+            if(equis<=3)
+                jueg[equis, ye, cara] = actualSon[x];
+            else
+                if(cara <=2)
+                    jueg[0, ye, cara+1] = actualSon[x];
+                else
+                    jueg[0, ye, 0] = actualSon[x];
+
         }
     }
 

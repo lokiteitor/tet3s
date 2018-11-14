@@ -38,9 +38,9 @@ public class juego : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("d") && (this.posicion[0]+0.2f)<0.4f)//mover lado
+        if (Input.GetKeyDown("d"))//mover lado
             moverL(1);
-        else if (Input.GetKeyDown("a") && (this.posicion[0] + 0.2f) > -0.4f)//mover otro lado
+        else if (Input.GetKeyDown("a"))//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
             actual.transform.Rotate(Vector3.right * 90);
@@ -50,40 +50,45 @@ public class juego : MonoBehaviour {
 
     }
 
+
+
     private void moverL(int lado)//mover a los lados
     {
         bool t = true;
+        print(":|");
         for (int x = 0; x < 4 && t; x++)
         {
             equis = redondear(actualSon[x].transform.position.z) + 2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y) - 1;
-            //print(x+" "+(equis + lado));
-            if ((equis + lado) > 4 && (equis + lado) < 0)
+            print(x+"-"+ye + " " + equis);
+            if ((equis + lado) > 4 || (equis + lado) < 0)
                 t = false;
             else
-                try
+            {
+                //try
+                //{
+
+                if ((equis + lado) <= 3)
                 {
-                    
-                    if ((equis + lado) <= 3)
-                    {
-                        if (jueg[(equis + lado), ye, cara] != null)
-                            t = false;
-                    }
-                    else if (cara <= 2)
-                    {
-                        if (jueg[0, ye, cara + 1] != null)
-                            t = false;
-                    }
-                    else if (cara > 2)
-                        if (jueg[0, ye, 0] != null)
-                            t = false;
-                    
+                    if (jueg[(equis + lado), ye, cara] != null)
+                        t = false;
                 }
+                else if (cara <= 2)
+                {
+                    if (jueg[0, ye, cara + 1] != null)
+                        t = false;
+                }
+                else if (cara > 2)
+                    if (jueg[0, ye, 0] != null)
+                        t = false;
+
+                /*}
                 catch
                 {
                     print("lo intente");
-                }
+                }*/
+            }
             
         }
         if (t)

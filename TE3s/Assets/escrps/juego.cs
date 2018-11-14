@@ -38,12 +38,28 @@ public class juego : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("d") && (this.posicion[0]+0.2f)<0.4f)//mover lado
+        bool flag = true;
+        if (Input.GetKeyDown("d") && (this.posicion[0] + 0.2f) < 0.4f)//mover lado
             moverL(1);
         else if (Input.GetKeyDown("a") && (this.posicion[0] + 0.2f) > -0.4f)//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
-            actual.transform.Rotate(Vector3.right * 90);
+        {
+            flag = true;
+            for (int x = 0; x < 4; x++)
+            {
+                equis = redondear(actualSon[x].transform.position.z) + 2;
+                if ((equis) > 4 || (equis) < 0)
+                {
+                    flag = false;
+                    break;
+                }
+
+            }
+            if (flag)
+                actual.transform.Rotate(Vector3.right * 90);
+        }
+
 
         bajarPieza();
 

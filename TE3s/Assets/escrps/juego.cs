@@ -39,27 +39,13 @@ public class juego : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        bool flag = true;
         if (Input.GetKeyDown("d") && (this.posicion[0] + 0.2f) < 0.4f)//mover lado
             moverL(1);
         else if (Input.GetKeyDown("a"))//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
-        {
-            flag = true;
-            for (int x = 0; x < 4; x++)
-            {
-                equis = redondear(actualSon[x].transform.position.z) + 2;
-                if ((equis) > 4 || (equis) < 0)
-                {
-                    flag = false;
-                    break;
-                }
+            verificarRotacion();
 
-            }
-            if (flag)
-                actual.transform.Rotate(Vector3.right * 90);
-        }
 
 
         bajarPieza();
@@ -67,6 +53,26 @@ public class juego : MonoBehaviour {
 
     }
 
+    private void verificarRotacion()
+    {
+        bool flag = true;
+        actual.transform.Rotate(Vector3.right * 90);
+        for (int x = 0; x < 4; x++)
+        {
+            equis = redondear(actualSon[x].transform.position.z) + 2;
+            if ((equis) > 4 || (equis) < 0)
+            {
+                flag = false;
+                break;
+            }
+
+        }
+        if (!flag)
+        {
+            actual.transform.Rotate(Vector3.left * 90);
+        }
+            
+    }
 
 
     private void moverL(int lado)//mover a los lados

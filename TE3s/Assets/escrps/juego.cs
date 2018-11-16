@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class juego : MonoBehaviour {
+public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
+{
     private GameObject actual;//elobjeto utilizado
     private GameObject[] actualSon;
     public GameObject[,,] jueg;//mapa de objetos a destruir <3 [x][y][cara]
@@ -262,5 +264,52 @@ public class juego : MonoBehaviour {
             return Mathf.CeilToInt(pos);
         else
             return Mathf.FloorToInt(pos);
+    }
+
+    public void UserDetected(uint userId, int userIndex)
+    {
+        KinectManager manager = KinectManager.Instance;
+        manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
+        manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
+    }
+
+    public void UserLost(uint userId, int userIndex)
+    {
+        // TODO : pasar el juego
+        return;
+    }
+
+    public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        // esperar
+        return;
+    }
+
+    public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        // se completo el swiftleft
+        if(gesture == KinectGestures.Gestures.RaiseRightHand)
+        {
+            // aplicar el codigo de 'd'
+            moverL(1);
+
+        }
+        if(gesture == KinectGestures.Gestures.RaiseLeftHand)
+        {
+            // aplicar el codigo 'a'
+            moverL(-1);
+        }
+        if(gesture == KinectGestures.Gestures.SwipeUp)
+        {
+            verificarRotacion();
+        }
+
+        return true;
+    }
+
+    public bool GestureCancelled(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint)
+    {
+        return true;
     }
 }

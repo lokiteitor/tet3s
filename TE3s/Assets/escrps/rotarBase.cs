@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
 {
@@ -12,6 +11,8 @@ public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
     int fais;
     public GameObject juego;
     private juego escrip;
+    private KinectManager manager;
+    private bool autoChangeAlfterDelay = false;
     // Use this for initialization
     private void Awake()
     {
@@ -153,7 +154,7 @@ public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
 
     public void UserDetected(uint userId, int userIndex)
     {
-        KinectManager manager = KinectManager.Instance;
+        manager = KinectManager.Instance;
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
 
@@ -183,7 +184,7 @@ public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
             x = 2;
 
         }
-        if(gesture == KinectGestures.Gestures.SwipeRight && verifGir(1)
+        if(gesture == KinectGestures.Gestures.SwipeRight && verifGir(1))
         {
             juego.SetActive(false);//apagamos el bajado
             if (angulo >= 270)

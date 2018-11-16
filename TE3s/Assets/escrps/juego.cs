@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
 {
@@ -23,6 +22,8 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
     private destruccion destruct;
     public int equis;//x
     public int ye;//y
+    private bool autoChangeAlfterDelay = false;
+    public KinectManager manager;
     //private Vector3[] actualPi;//posicion de las piezas
 
     void Start ()
@@ -46,36 +47,29 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
         else if (Input.GetKeyDown("a"))//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
-            verificarRotacion();
+            rotar();
 
 
 
         bajarPieza();
 
-
     }
 
-    private void verificarRotacion()
+    private void rotar()
     {
-        bool flag = true;
         actual.transform.Rotate(Vector3.right * 90);
         for (int x = 0; x < 4; x++)
         {
             equis = redondear(actualSon[x].transform.position.z) + 2;
-            if ((equis) > 4 || (equis) < 0)
-            {
-                flag = false;
-                break;
-            }
+            ye = redondear(actualSon[x].transform.position.y) - 1;
+            print(equis);
+            if (equis > 4 || equis < 0 || ye <= 0)
+                actual.transform.Rotate(Vector3.right * -90);
+            //break;
+
 
         }
-        if (!flag)
-        {
-            actual.transform.Rotate(Vector3.left * 90);
-        }
-            
     }
-
 
     private void moverL(int lado)//mover a los lados
     {
@@ -268,21 +262,23 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
 
     public void UserDetected(uint userId, int userIndex)
     {
-        KinectManager manager = KinectManager.Instance;
+
         manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
         manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
+        Debug.Log("Usuario Detectado");
     }
 
     public void UserLost(uint userId, int userIndex)
     {
-        // TODO : pasar el juego
+        // TODO : pasar el juego;
         return;
     }
 
     public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
     {
         // esperar
+        Debug.Log("Gesto en progreso");
         return;
     }
 
@@ -302,7 +298,7 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
         }
         if(gesture == KinectGestures.Gestures.SwipeUp)
         {
-            verificarRotacion();
+            rotar();
         }
 
         return true;

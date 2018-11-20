@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964127, b: 0.57481724, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -256,6 +257,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f49b18b2570564c9f4349bbc7d9b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  juego: {fileID: 2110791194}
+  basse: {fileID: 1466913032}
 --- !u!1 &1353350717
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd891d4501cbd3439ec2cce02eb02b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualSon: []
   pref1: {fileID: 1134462836625662, guid: 36d4e00fa4c43474b8b47688aa30a09a, type: 2}
   pref2: {fileID: 1047263515400890, guid: 195726e66e9bb2e4c9c793d91003e3c5, type: 2}
   pref3: {fileID: 1864188828031426, guid: b6c68f7554692854fbd7ed8ef16e2ddb, type: 2}
@@ -479,6 +494,7 @@ MonoBehaviour:
   pref5: {fileID: 1977642833911044, guid: 339756ab87c2d044c8428b0a7c524847, type: 2}
   pref6: {fileID: 1132885908034732, guid: f077b3e01ae1a174a98f0c7fc2125f97, type: 2}
   pref7: {fileID: 1168491259784516, guid: 26131c48f53a98146a4c78d6a4c665b7, type: 2}
+  camara: {fileID: 534669902}
   cara: 0
   baseJ: {fileID: 1466913032}
   equis: 0

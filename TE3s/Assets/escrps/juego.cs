@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class juego : MonoBehaviour {
     private GameObject actual;//elobjeto utilizado
-    private GameObject[] actualSon;
+    public GameObject[] actualSon;
     public GameObject[,,] jueg;//mapa de objetos a destruir <3 [x][y][cara]
     public GameObject pref1;//prefabs
     public GameObject pref2;
@@ -13,6 +13,8 @@ public class juego : MonoBehaviour {
     public GameObject pref5;
     public GameObject pref6;
     public GameObject pref7;
+    public GameObject camara;
+    private fin cam;
     private float[] posicion;//posicion de la pieza moviendose
     private float tiempo;//cuanto tiempo se espero por cada avanse
     private float tiempoTr;//tiempo transcurrido desde la ultima pasada
@@ -25,6 +27,7 @@ public class juego : MonoBehaviour {
 
     void Start ()
     {// Use this for initialization
+        cam = camara.GetComponent<fin>();
         this.posicion = new float[2];
         tiempo = 1.5f;
         tiempoTr = 0f;
@@ -43,25 +46,53 @@ public class juego : MonoBehaviour {
         else if (Input.GetKeyDown("a"))//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
-            actual.transform.Rotate(Vector3.right * 90);
+            rotar();
 
         bajarPieza();
 
 
     }
 
-
+    private void rotar()
+    {
+        bool a=true;
+        int ca = cara, ex;
+        actual.transform.Rotate(Vector3.right * 90);
+        for(int x=0; x < 4; x++)
+        {
+            equis = redondear(actualSon[x].transform.position.z) + 2;
+            ye = redondear(actualSon[x].transform.position.y) - 1;
+            ex = equis;
+            if(equis > 3)
+            {
+                ex = 0;
+                if (cara <= 2)
+                    ca++;
+                else
+                    ca = 0;
+            }
+            if ((equis > 4 || equis < 0 || ye < 0) && a)
+            {
+                actual.transform.Rotate(Vector3.right * -90);
+                a = false;
+            }else if(jueg[ex, ye, ca] != null)
+            {
+                actual.transform.Rotate(Vector3.right * -90);
+                a = false;
+            }
+        }
+    }
 
     private void moverL(int lado)//mover a los lados
     {
         bool t = true;
-        print(":|");
+        //print(":|");
         for (int x = 0; x < 4 && t; x++)
         {
             equis = redondear(actualSon[x].transform.position.z) + 2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y) - 1;
-            print(x+"-"+ye + " " + equis);
+            //print(x+"-"+ye + " " + equis);
             if ((equis + lado) > 4 || (equis + lado) < 0)
                 t = false;
             else
@@ -156,8 +187,12 @@ public class juego : MonoBehaviour {
                     actualSon[p].transform.SetParent(baseJ.transform);
                 }
                 destruct.verificar();
+                Destroy(actual);
+                cam.finich();
                 generar();
+                tiempo -= 0.03f;
             }
+
         }
     }
 
@@ -169,17 +204,16 @@ public class juego : MonoBehaviour {
         for(int x=0; x < 4; x++)//verificar piezas una por una
         {
             //equis =Mathf.CeilToInt((actualSon[x].transform.position.z * 5f) + 3f);
+            
             equis = redondear(actualSon[x].transform.position.z)+2;
-            //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
-            //print (equis+"-"+ye);
 
             // meter la pieza al mapa
-            if (equis < 0)
+            /*if (equis < 0)
                 moverL(1);
             if (equis > 4)
                 moverL(-1);
-
+                */
             if (ye <= 0)
                 return false;
             else if (equis < 4)
@@ -188,7 +222,6 @@ public class juego : MonoBehaviour {
                     return false;
             }else
             {
-                //print("entra pta");
                 int f=cara;
                 if (cara == 3)
                 {
@@ -210,7 +243,7 @@ public class juego : MonoBehaviour {
             equis = redondear(actualSon[x].transform.position.z)+2;
             //ye =  Mathf.CeilToInt(5f * (actualSon[x].transform.position.y - 0.2f));
             ye = redondear(actualSon[x].transform.position.y)-1;
-            print(equis+"-"+ye+"-"+cara);
+            //print(equis+"-"+ye+"-"+cara);
             if(equis<=3)
                 jueg[equis, ye, cara] = actualSon[x];
             else
@@ -224,10 +257,14 @@ public class juego : MonoBehaviour {
 
     public int getPos(int p, bool cor)//cordenadas de la cosa esa (pieza, x=t o y=f)
     {
-        if(cor)
-            return redondear(actualSon[p].transform.position.z) +2;
-        else
-            return redondear(actualSon[p].transform.position.y) - 1;
+        if (actualSon[p] != null)
+        {
+            if (cor)
+                return redondear(actualSon[p].transform.position.z) + 2;
+            else
+                return redondear(actualSon[p].transform.position.y) - 1;
+        }
+        return 9;
     }
 
     private int redondear(float pos)//numerito de cordenada
@@ -240,4 +277,6 @@ public class juego : MonoBehaviour {
         else
             return Mathf.FloorToInt(pos);
     }
+
+    
 }

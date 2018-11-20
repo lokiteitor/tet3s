@@ -138,12 +138,35 @@ public class rotarBase : MonoBehaviour {
         {
             ex = escrip.getPos(b, true);
             y = escrip.getPos(b, false);
-
-            if(escrip.jueg[ex, y, f] != null)
+            if (ex <= 3)
             {
-                //mandar señal de que no se puede
-                print("huevos");
-                return false;
+                if (escrip.jueg[ex, y, f] != null)
+                {
+                    //mandar señal de que no se puede
+                    //print("huevos");
+                    return false;
+                }
+            }
+            else
+            {
+                if (f <= 2)
+                {
+                    if (escrip.jueg[0, y, f + 1] != null)
+                    {
+                        //mandar señal de que no se puede
+                        //print("huevos2");
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (escrip.jueg[0, y, 0] != null)
+                    {
+                        //mandar señal de que no se puede
+                        //print("huevos2");
+                        return false;
+                    }
+                }
             }
         }
         return true;

@@ -265,11 +265,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8f49b18b2570564c9f4349bbc7d9b18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  juego: {fileID: 2110791194}
-  basse: {fileID: 1466913032}
+  m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  TwoUsers: 0
+  ComputeUserMap: 0
+  ComputeColorMap: 0
+  DisplayUserMap: 0
+  DisplayColorMap: 0
+  DisplaySkeletonLines: 0
+  DisplayMapsWidthPercent: 20
+  SensorHeight: 1
+  SensorAngle: 0
+  MinUserDistance: 1
+  MaxUserDistance: 0
+  DetectClosestUser: 1
+  IgnoreInferredJoints: 1
+  smoothing: 1
+  UseBoneOrientationsFilter: 0
+  UseClippedLegsFilter: 0
+  UseBoneOrientationsConstraint: 1
+  UseSelfIntersectionConstraint: 0
+  Player1Avatars: []
+  Player2Avatars: []
+  Player1CalibrationPose: 0
+  Player2CalibrationPose: 0
+  Player1Gestures: 080000000a000000090000000100000002000000
+  Player2Gestures:
+  MinTimeBetweenGestures: 0.7
+  GestureListeners:
+  - {fileID: 2110791195}
+  - {fileID: 1466913036}
+  CalibrationText: {fileID: 0}
+  HandCursor1: {fileID: 0}
+  HandCursor2: {fileID: 0}
+  ControlMouseCursor: 0
+  GesturesDebugText: {fileID: 0}
 --- !u!1 &1353350717
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,8 +475,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 476d78a91acc37d45a373b6bcb7473e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   juego: {fileID: 2110791194}
 --- !u!114 &1466913037
 MonoBehaviour:
@@ -456,8 +487,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfa01a094a7235d49bda68433d38e649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   elJuego: {fileID: 2110791194}
 --- !u!1 &2110791194
 GameObject:
@@ -484,8 +515,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfd891d4501cbd3439ec2cce02eb02b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   actualSon: []
   pref1: {fileID: 1134462836625662, guid: 36d4e00fa4c43474b8b47688aa30a09a, type: 2}
   pref2: {fileID: 1047263515400890, guid: 195726e66e9bb2e4c9c793d91003e3c5, type: 2}
@@ -499,6 +530,7 @@ MonoBehaviour:
   baseJ: {fileID: 1466913032}
   equis: 0
   ye: 0
+  manager: {fileID: 0}
 --- !u!4 &2110791196
 Transform:
   m_ObjectHideFlags: 0

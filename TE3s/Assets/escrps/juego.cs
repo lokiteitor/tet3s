@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class juego : MonoBehaviour {
+public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
+{
     private GameObject actual;//elobjeto utilizado
     public GameObject[] actualSon;
     public GameObject[,,] jueg;//mapa de objetos a destruir <3 [x][y][cara]
@@ -23,6 +24,8 @@ public class juego : MonoBehaviour {
     private destruccion destruct;
     public int equis;//x
     public int ye;//y
+    private bool autoChangeAlfterDelay = false;
+    public KinectManager manager;
     //private Vector3[] actualPi;//posicion de las piezas
 
     void Start ()
@@ -41,15 +44,17 @@ public class juego : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("d"))//mover lado
+
+        if (Input.GetKeyDown("d") && (this.posicion[0] + 0.2f) < 0.4f)//mover lado
             moverL(1);
         else if (Input.GetKeyDown("a"))//mover otro lado
             moverL(-1);
         else if (Input.GetKeyDown("s"))//rotar
             rotar();
 
-        bajarPieza();
 
+
+        bajarPieza();
 
     }
 
@@ -120,7 +125,7 @@ public class juego : MonoBehaviour {
                     print("lo intente");
                 }*/
             }
-            
+
         }
         if (t)
         {
@@ -204,7 +209,7 @@ public class juego : MonoBehaviour {
         for(int x=0; x < 4; x++)//verificar piezas una por una
         {
             //equis =Mathf.CeilToInt((actualSon[x].transform.position.z * 5f) + 3f);
-            
+
             equis = redondear(actualSon[x].transform.position.z)+2;
             ye = redondear(actualSon[x].transform.position.y)-1;
 
@@ -278,5 +283,52 @@ public class juego : MonoBehaviour {
             return Mathf.FloorToInt(pos);
     }
 
-    
+    public void UserDetected(uint userId, int userIndex)
+    {
+
+        manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
+        manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
+        Debug.Log("Usuario Detectado");
+    }
+
+    public void UserLost(uint userId, int userIndex)
+    {
+        // TODO : pasar el juego;
+        return;
+    }
+
+    public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        // esperar
+        Debug.Log("Gesto en progreso");
+        return;
+    }
+
+    public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        // se completo el swiftleft
+        if(gesture == KinectGestures.Gestures.RaiseRightHand)
+        {
+            // aplicar el codigo de 'd'
+            moverL(1);
+
+        }
+        if(gesture == KinectGestures.Gestures.RaiseLeftHand)
+        {
+            // aplicar el codigo 'a'
+            moverL(-1);
+        }
+        if(gesture == KinectGestures.Gestures.SwipeUp)
+        {
+            rotar();
+        }
+
+        return true;
+    }
+
+    public bool GestureCancelled(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint)
+    {
+        return true;
+    }
 }

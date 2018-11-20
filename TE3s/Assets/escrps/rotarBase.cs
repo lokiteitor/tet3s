@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rotarBase : MonoBehaviour {
+public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
+{
     int x;
     float angulo;//se usa para girar
     //float comparador;//se usa para detener el giro
@@ -10,6 +11,8 @@ public class rotarBase : MonoBehaviour {
     int fais;
     public GameObject juego;
     private juego escrip;
+    private KinectManager manager;
+    private bool autoChangeAlfterDelay = false;
     // Use this for initialization
     private void Awake()
     {
@@ -169,6 +172,55 @@ public class rotarBase : MonoBehaviour {
                 }
             }
         }
+        return true;
+    }
+
+    public void UserDetected(uint userId, int userIndex)
+    {
+        manager = KinectManager.Instance;
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+
+    }
+
+    public void UserLost(uint userId, int userIndex)
+    {
+        return;
+    }
+
+    public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        return;
+    }
+
+    public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        if(gesture == KinectGestures.Gestures.SwipeLeft && verifGir(-1))
+        {
+            juego.SetActive(false);
+            if (angulo == 0)
+                angulo = 275;
+            else if (angulo <= 90)
+                angulo = 5;
+            else
+                angulo -= 90;
+            x = 2;
+
+        }
+        if(gesture == KinectGestures.Gestures.SwipeRight && verifGir(1))
+        {
+            juego.SetActive(false);//apagamos el bajado
+            if (angulo >= 270)
+                angulo = 355;
+            else
+                angulo += 90;
+            x = 1;
+        }
+        return true;
+    }
+
+    public bool GestureCancelled(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint)
+    {
         return true;
     }
 }

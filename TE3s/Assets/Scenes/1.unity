@@ -282,7 +282,7 @@ MonoBehaviour:
   MaxUserDistance: 0
   DetectClosestUser: 1
   IgnoreInferredJoints: 1
-  smoothing: 1
+  smoothing: 3
   UseBoneOrientationsFilter: 0
   UseClippedLegsFilter: 0
   UseBoneOrientationsConstraint: 1
@@ -291,9 +291,9 @@ MonoBehaviour:
   Player2Avatars: []
   Player1CalibrationPose: 0
   Player2CalibrationPose: 0
-  Player1Gestures: 080000000a000000090000000100000002000000
+  Player1Gestures: 0800000011000000090000000100000002000000
   Player2Gestures: 
-  MinTimeBetweenGestures: 0.7
+  MinTimeBetweenGestures: 0.2
   GestureListeners:
   - {fileID: 2110791195}
   - {fileID: 1466913036}

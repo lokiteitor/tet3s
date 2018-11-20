@@ -288,7 +288,7 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
 
         manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
         manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
-        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
+        manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
         Debug.Log("Usuario Detectado");
     }
 
@@ -301,12 +301,13 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
     public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
     {
         // esperar
-        Debug.Log("Gesto en progreso");
+        Debug.Log("Gesto en progreso" + gesture);        
         return;
     }
 
     public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
     {
+    	Debug.Log(gesture);
         // se completo el swiftleft
         if(gesture == KinectGestures.Gestures.RaiseRightHand)
         {
@@ -319,7 +320,7 @@ public class juego : MonoBehaviour , KinectGestures.GestureListenerInterface
             // aplicar el codigo 'a'
             moverL(-1);
         }
-        if(gesture == KinectGestures.Gestures.SwipeUp)
+        if(gesture == KinectGestures.Gestures.Jump)
         {
             rotar();
         }

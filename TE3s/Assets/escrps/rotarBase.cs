@@ -195,7 +195,7 @@ public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
 
     public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
     {
-        if(gesture == KinectGestures.Gestures.SwipeLeft && verifGir(-1))
+        if(gesture == KinectGestures.Gestures.SwipeRight && verifGir(-1))
         {
             juego.SetActive(false);
             if (angulo == 0)
@@ -207,7 +207,7 @@ public class rotarBase : MonoBehaviour, KinectGestures.GestureListenerInterface
             x = 2;
 
         }
-        if(gesture == KinectGestures.Gestures.SwipeRight && verifGir(1))
+        if(gesture == KinectGestures.Gestures.SwipeLeft && verifGir(1))
         {
             juego.SetActive(false);//apagamos el bajado
             if (angulo >= 270)
